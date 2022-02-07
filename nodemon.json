@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "/package",
+        ".env"
+    ],
+    "ext": "js,ts,json",
+    "exec": "ts-node --transpile-only ./package/app.ts"
+}
