@@ -14,6 +14,9 @@ const PostSchema = new Schema(
     subtitle: {
       type: String,
     },
+    summary: {
+      type: String,
+    },
     image: {
       type: String,
     },

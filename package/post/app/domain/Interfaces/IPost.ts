@@ -5,6 +5,7 @@ export interface IPost {
   title: String;
   owner_id: String; // user id of owner
   subtitle: String;
+  summary: String;
   image: String;
   images: PostImage[];
   publish_date: Date;

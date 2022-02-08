@@ -5,6 +5,7 @@ export default class DomainPost {
   title: String;
   owner_id: String; // user id of owner
   subtitle: String;
+  summary: String;
   image: String;
   images: PostImage[];
   publish_date: Date;
@@ -21,6 +22,7 @@ export default class DomainPost {
     title: String,
     owner_id: String, // user id of owner
     subtitle: String,
+    summary: String,
     image: String,
     images: PostImage[],
     publish_date: Date,
@@ -35,6 +37,7 @@ export default class DomainPost {
     this._id = _id;
     this.title = title;
     this.subtitle = subtitle;
+    this.summary = summary;
     this.owner_id = owner_id;
     this.publish_date = publish_date;
     this.image = image;
@@ -54,6 +57,7 @@ export default class DomainPost {
     title: String,
     owner_id: String, // user id of owner
     subtitle: String,
+    summary: String,
     image: String,
     images: PostImage[],
     publish_date: Date,
@@ -70,6 +74,7 @@ export default class DomainPost {
       title,
       owner_id,
       subtitle,
+      summary,
       image,
       images,
       publish_date,
