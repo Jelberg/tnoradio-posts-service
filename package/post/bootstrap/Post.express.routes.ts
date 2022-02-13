@@ -11,8 +11,8 @@ import {
   updatePostController,
   destroyPostController,
   deletePostController,
-  PostsHealthController,
-  PostImageController,
+  postsHealthController,
+  postImageController,
   uploadImagesController,
   getPostBySlugController,
 } from "./bootstrap";
@@ -21,7 +21,7 @@ var router = express.Router();
 
 router.get(
   "/api/posts/health",
-  PostsHealthController.handle.bind(PostsHealthController)
+  postsHealthController.handle.bind(postsHealthController)
 );
 router.get(
   "/api/posts/index",
@@ -52,8 +52,8 @@ router.delete(
   destroyPostController.handle.bind(destroyPostController)
 );
 router.get(
-  "/api/posts/image/:type/:name",
-  PostImageController.handle.bind(PostImageController)
+  "/api/posts/imagefromdb/:type/:name",
+  postImageController.handle.bind(postImageController)
 );
 router.post(
   "/api/posts/upload",

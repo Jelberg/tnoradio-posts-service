@@ -62,8 +62,8 @@ const getPostBySlugController = new GetPostBySlugController({ getPostBySlug });
 const updatePostController = new UpdatePostController({ updatePost });
 const destroyPostController = new DestroyPostController({ destroyPost });
 const deletePostController = new DeletePostController({ deletePost });
-const PostsHealthController = new HealthController({ getPostsHealth });
-const PostImageController = new GetPostImageController({ getPostImage });
+const postsHealthController = new HealthController({ getPostsHealth });
+const postImageController = new GetPostImageController({ getPostImage });
 const uploadImagesController = new UploadImagesController({ uploadImages });
 
 export {
@@ -73,8 +73,8 @@ export {
   updatePostController,
   destroyPostController,
   deletePostController,
-  PostsHealthController,
-  PostImageController,
+  postsHealthController,
+  postImageController,
   uploadImagesController,
   getPostBySlugController,
 };

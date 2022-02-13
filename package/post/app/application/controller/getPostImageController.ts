@@ -14,7 +14,7 @@ export class GetPostImageController {
 
     try {
       var options = {
-        root: "public/Post_images/" + req.params.type,
+        root: "public/post_images/" + req.params.type,
         dotfiles: "deny",
         headers: {
           "x-timestamp": Date.now(),
