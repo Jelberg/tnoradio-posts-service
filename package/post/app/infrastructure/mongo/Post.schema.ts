@@ -3,6 +3,7 @@ import { IPost } from "../../domain/Interfaces/IPost";
 import PostImageSchema from "./PostImage.schema";
 //import uniqueValidator from "mongoose-unique-validator";
 const Schema = mongoose.Schema;
+
 const PostSchema = new Schema(
   {
     title: {
@@ -29,9 +30,6 @@ const PostSchema = new Schema(
     },
     publish_date: {
       type: Date,
-    },
-    priority: {
-      type: Boolean,
     },
     tags: {
       type: [String],

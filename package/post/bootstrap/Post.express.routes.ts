@@ -15,6 +15,9 @@ import {
   PostImageController,
   uploadImagesController,
   getPostBySlugController,
+  getImageFromDBController,
+  uploadImageToDbController,
+  updateImageInDBController,
 } from "./bootstrap";
 
 var router = express.Router();
@@ -59,6 +62,20 @@ router.post(
   "/api/posts/upload",
   upload.single("upload"),
   uploadImagesController.handle.bind(uploadImagesController)
+);
+router.post(
+  "/api/posts/uploadtodb",
+  upload.single("image"),
+  uploadImageToDbController.handle.bind(uploadImageToDbController)
+);
+router.patch(
+  "/api/posts/updateimageindb",
+  upload.single("image"),
+  updateImageInDBController.handle.bind(updateImageInDBController)
+);
+router.get(
+  "/api/posts/imagefromdb/:name/:slug",
+  getImageFromDBController.handle.bind(getImageFromDBController)
 );
 
 export default router;

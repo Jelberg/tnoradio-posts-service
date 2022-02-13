@@ -2,14 +2,17 @@ import Post from "./Post.schema";
 import DomainPost from "../../domain/entities/Post";
 import { PostRepository } from "../../domain/services/Post.service.repository";
 import _ from "lodash";
+import PostImage from "../../domain/entities/PostImage";
+import Image from "./PostImage.schema";
+
 export class PostMongoRepository implements PostRepository {
-  async update(Post: DomainPost, id: string): Promise<Error | DomainPost> {
-    console.log("MONGO", Post);
+  async update(post: DomainPost, id: string): Promise<Error | DomainPost> {
+    console.log("MONGO", post);
     console.log("ID", id);
     try {
       const result = await Post.findByIdAndUpdate(
         { _id: id },
-        Post,
+        post,
         { runValidators: true },
         function (err) {
           console.log("ERR IN UPDATE ", err);
@@ -26,7 +29,7 @@ export class PostMongoRepository implements PostRepository {
       // const PostHistory = await this.insertFromHistoryPost(Post);
 
       //console.log("Post_HSTORE", PostHistory);
-      return Post;
+      return post;
     } catch (err) {
       let errorObject = JSON.parse(JSON.stringify(err));
       console.log("ERR IN CATCH ", errorObject);
@@ -37,7 +40,7 @@ export class PostMongoRepository implements PostRepository {
   /**
    * Function changes Post status to removed setting
    * deleted field true
-   * @param PostId ID from Post
+   * @param postId ID from Post
    */
   async delete(_id: String): Promise<DomainPost | Error> {
     try {
@@ -45,8 +48,6 @@ export class PostMongoRepository implements PostRepository {
         { _id: _id },
         { deleted: true }
       );
-
-      console.log(deletedPost);
       return deletedPost;
     } catch (err) {
       console.log(err);
@@ -54,11 +55,11 @@ export class PostMongoRepository implements PostRepository {
     }
   }
 
-  async save(DPost: DomainPost): Promise<DomainPost> {
+  async save(post: DomainPost): Promise<DomainPost> {
     console.log("create");
-    console.log(Post);
+    console.log(post);
     try {
-      const response = await Post.create(DPost);
+      const response = await Post.create(post);
       console.log(response);
       return response;
     } catch (err) {
@@ -77,9 +78,9 @@ export class PostMongoRepository implements PostRepository {
 
   async getPostById(_id: String): Promise<DomainPost> {
     try {
-      const LPost = await Post.findOne({ _id: _id });
-      if (LPost === null) return null;
-      else return LPost;
+      const post = await Post.findOne({ _id: _id });
+      if (post === null) return null;
+      else return post;
     } catch (err) {
       return err;
     }
@@ -87,18 +88,62 @@ export class PostMongoRepository implements PostRepository {
 
   async getPostBySlug(_slug: String): Promise<DomainPost> {
     try {
-      const LPost = await Post.findOne({ slug: _slug });
-      if (LPost === null) return null;
-      else return LPost;
+      const post = await Post.findOne({ slug: _slug });
+      if (post === null) return null;
+      else return post;
     } catch (err) {
       return err;
     }
   }
 
-  async destroy(PostId: String): Promise<any | Error> {
+  async destroy(postId: String): Promise<any | Error> {
     try {
       //console.log(PostId);
-      return await Post.findByIdAndRemove({ _id: PostId });
+      return await Post.findByIdAndRemove({ _id: postId });
+    } catch (err) {
+      return err;
+    }
+  }
+  async getPostImage(name: String, slug: String): Promise<PostImage> {
+    try {
+      const image = await Image.findOne({ imageName: name, imageUrl: slug });
+      if (image == null) return null;
+      else return image;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async savePostImage(image): Promise<PostImage> {
+    try {
+      const res = await Image.create(image);
+      if (image == null) return null;
+      else return res;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async updatePostImage(image, slug, name): Promise<PostImage> {
+    let createResponse;
+
+    console.log(name);
+    console.log(slug);
+
+    const updateResponse = await Image.findOneAndUpdate(
+      { imageName: name, imageUrl: slug },
+      image
+    );
+
+    if (updateResponse === null) {
+      createResponse = await Image.create(image);
+      return createResponse;
+    } else return updateResponse;
+  }
+
+  async destroyImage(imageUrl: String): Promise<any> {
+    try {
+      return await Image.findOneAndDelete({ imageUrl: imageUrl });
     } catch (err) {
       return err;
     }
