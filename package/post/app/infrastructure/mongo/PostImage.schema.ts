@@ -14,6 +14,14 @@ const PostImageSchema = new Schema(
       default: "",
       required: [true],
     },
+    file: {
+      data: Buffer,
+      contentType: String,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "Post",
+    },
   },
   {
     timestamps: true,
@@ -22,6 +30,6 @@ const PostImageSchema = new Schema(
 
 //User constant represents the entire collection of data
 export default mongoose.model<IPostImage & mongoose.Document>(
-  "PostImage",
+  "postImage",
   PostImageSchema
 );

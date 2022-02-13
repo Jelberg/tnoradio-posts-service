@@ -32,6 +32,12 @@ import { UploadImagesController } from "../app/application/controller/uploadImag
 import { UploadImages } from "../app/application/useCases/UploadImages.uc";
 import { GetPostBySlug } from "../app/application/useCases/PostBySlugGetter";
 import { GetPostBySlugController } from "../app/application/controller/getPostBySlugController";
+import { GetImageFromDBController } from "../app/application/controller/getImageFromDBController";
+import { UpdateImageInDBController } from "../app/application/controller/updateImageInDBController";
+import { UploadImageToDBController } from "../app/application/controller/uploadImageToDBController";
+import { ImageDBGetter } from "../app/application/useCases/ImageDBGetter.uc";
+import { UploadImageToDatabase } from "../app/application/useCases/UploadImageToBD.uc";
+import { UpdateImageInDB } from "../app/application/useCases/UpdateImageInDB.uc";
 
 // BOOTSTRAP SERVICES
 /**
@@ -53,6 +59,9 @@ const deletePost = new DeletePost(PostRepository);
 const getPostsHealth = new GetPostsHealth();
 const getPostImage = new ImageGetter(PostImageRepository);
 const uploadImages = new UploadImages();
+const uploadImageToDb = new UploadImageToDatabase(PostRepository);
+const imageFromDbGetter = new ImageDBGetter(PostRepository);
+const updateImageInDB = new UpdateImageInDB(PostRepository);
 
 // BOOTSTRAP CONTROLLERS
 const getAllPostsController = new GetAllPostsController({ getAllPosts });
@@ -65,6 +74,15 @@ const deletePostController = new DeletePostController({ deletePost });
 const postsHealthController = new HealthController({ getPostsHealth });
 const postImageController = new GetPostImageController({ getPostImage });
 const uploadImagesController = new UploadImagesController({ uploadImages });
+const uploadImageToDbController = new UploadImageToDBController({
+  uploadImageToDb,
+});
+const getImageFromDBController = new GetImageFromDBController({
+  imageFromDbGetter,
+});
+const updateImageInDBController = new UpdateImageInDBController({
+  updateImageInDB,
+});
 
 export {
   getAllPostsController,
@@ -77,4 +95,7 @@ export {
   postImageController,
   uploadImagesController,
   getPostBySlugController,
+  uploadImageToDbController,
+  getImageFromDBController,
+  updateImageInDBController,
 };

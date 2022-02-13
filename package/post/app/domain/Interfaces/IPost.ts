@@ -10,7 +10,6 @@ export interface IPost {
   images: PostImage[];
   publish_date: Date;
   tags: String[];
-  priority: Boolean;
   starred: Boolean;
   deleted: Boolean;
   text: String;

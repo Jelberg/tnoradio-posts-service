@@ -10,7 +10,6 @@ export default class DomainPost {
   images: PostImage[];
   publish_date: Date;
   tags: String[];
-  priority: Boolean;
   starred: Boolean;
   deleted: Boolean;
   text: String;
@@ -27,7 +26,6 @@ export default class DomainPost {
     images: PostImage[],
     publish_date: Date,
     tags: String[],
-    priority: Boolean,
     starred: Boolean,
     deleted: Boolean,
     text: String,
@@ -44,7 +42,6 @@ export default class DomainPost {
     this.images = images;
     this.text = text;
     this.tags = tags;
-    this.priority = priority;
     this.images = images;
     this.starred = starred;
     this.deleted = deleted;
@@ -62,7 +59,6 @@ export default class DomainPost {
     images: PostImage[],
     publish_date: Date,
     tags: String[],
-    priority: Boolean,
     starred: Boolean,
     deleted: Boolean,
     text: String,
@@ -79,7 +75,6 @@ export default class DomainPost {
       images,
       publish_date,
       tags,
-      priority,
       starred,
       deleted,
       text,

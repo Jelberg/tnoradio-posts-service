@@ -1,4 +1,5 @@
 import DomainPost from "../entities/Post";
+import PostImage from "../entities/PostImage";
 
 export interface PostRepository {
   save(Post: DomainPost): Promise<DomainPost | Error>;
@@ -8,4 +9,7 @@ export interface PostRepository {
   update(Post: DomainPost, id?: String): Promise<DomainPost | Error>;
   destroy(PostId: String): Promise<any | Error>;
   delete(PostId: String): Promise<DomainPost | Error>;
+  getPostImage(name: String, slug: String): Promise<PostImage>;
+  savePostImage(image): Promise<PostImage>;
+  updatePostImage(image, slug, name): Promise<PostImage>;
 }
