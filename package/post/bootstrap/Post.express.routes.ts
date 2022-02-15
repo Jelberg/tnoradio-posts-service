@@ -55,7 +55,7 @@ router.delete(
   destroyPostController.handle.bind(destroyPostController)
 );
 router.get(
-  "/api/posts/imagefromdb/:type/:name",
+  "/api/posts/image",
   postImageController.handle.bind(postImageController)
 );
 router.post(
