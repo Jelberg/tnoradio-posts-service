@@ -1,3 +1,4 @@
+import { ITextBlock } from "./ITextBlock";
 import PostImage from "../entities/PostImage";
 
 export interface IPost {
@@ -12,7 +13,7 @@ export interface IPost {
   tags: String[];
   starred: Boolean;
   deleted: Boolean;
-  text: String;
+  text: { blocks: ITextBlock[] };
   slug: String;
   approved: Boolean;
 }

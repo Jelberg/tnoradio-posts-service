@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { IPost } from "../../domain/Interfaces/IPost";
 import PostImageSchema from "./PostImage.schema";
+import TextBlockSchema from "./TextBlock.schema";
 //import uniqueValidator from "mongoose-unique-validator";
 const Schema = mongoose.Schema;
 
@@ -35,7 +36,7 @@ const PostSchema = new Schema(
       type: [String],
     },
     text: {
-      type: String,
+      type: { blocks: [TextBlockSchema.schema] },
     },
     slug: {
       type: String,
