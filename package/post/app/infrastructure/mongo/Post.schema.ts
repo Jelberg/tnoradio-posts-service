@@ -36,7 +36,8 @@ const PostSchema = new Schema(
       type: [String],
     },
     text: {
-      type: { blocks: [TextBlockSchema.schema] },
+      blocks: [TextBlockSchema.schema],
+      entityMap: Schema.Types.Mixed,
     },
     slug: {
       type: String,

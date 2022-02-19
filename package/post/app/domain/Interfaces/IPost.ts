@@ -13,7 +13,7 @@ export interface IPost {
   tags: String[];
   starred: Boolean;
   deleted: Boolean;
-  text: { blocks: ITextBlock[] };
+  text: { blocks: ITextBlock[]; entityMap: {} };
   slug: String;
   approved: Boolean;
 }

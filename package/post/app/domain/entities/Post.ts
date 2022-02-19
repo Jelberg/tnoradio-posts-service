@@ -12,7 +12,7 @@ export default class DomainPost {
   tags: String[];
   starred: Boolean;
   deleted: Boolean;
-  text: { blocks: TextBlock[] };
+  text: { blocks: TextBlock[]; entityMap: {} };
   slug: String;
   approved: Boolean;
 
@@ -28,7 +28,7 @@ export default class DomainPost {
     tags: String[],
     starred: Boolean,
     deleted: Boolean,
-    text: { blocks: TextBlock[] },
+    text: { blocks: TextBlock[]; entityMap: {} },
     slug: String,
     approved: Boolean
   ) {
@@ -61,7 +61,7 @@ export default class DomainPost {
     tags: String[],
     starred: Boolean,
     deleted: Boolean,
-    text: { blocks: TextBlock[] },
+    text: { blocks: TextBlock[]; entityMap: {} },
     slug: String,
     approved: Boolean
   ) {
