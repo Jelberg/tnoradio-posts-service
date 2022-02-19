@@ -1,5 +1,7 @@
 import Post from "./Post.schema";
+import Tag from "./Tag.schema";
 import DomainPost from "../../domain/entities/Post";
+import DomainTag from "../../domain/entities/Tag";
 import { PostRepository } from "../../domain/services/Post.service.repository";
 import _ from "lodash";
 import PostImage from "../../domain/entities/PostImage";
@@ -67,10 +69,30 @@ export class PostMongoRepository implements PostRepository {
       return err;
     }
   }
+  async saveTag(tag: DomainTag): Promise<DomainTag> {
+    console.log("create");
+    console.log(tag);
+    try {
+      const response = await Tag.create(tag);
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 
   async getAll(): Promise<Error | DomainPost[]> {
     try {
       return Post.find();
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async getAllTags(): Promise<Error | DomainTag[]> {
+    try {
+      return Tag.find();
     } catch (err) {
       return err;
     }

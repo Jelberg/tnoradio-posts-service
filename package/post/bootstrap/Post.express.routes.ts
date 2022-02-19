@@ -18,6 +18,8 @@ import {
   getImageFromDBController,
   uploadImageToDbController,
   updateImageInDBController,
+  getAllTagsController,
+  createTagController,
 } from "./bootstrap";
 
 var router = express.Router();
@@ -31,6 +33,10 @@ router.get(
   getAllPostsController.handle.bind(getAllPostsController)
 );
 router.get(
+  "/api/posts/tags/index",
+  getAllTagsController.handle.bind(getAllTagsController)
+);
+router.get(
   "/api/posts/getpostbyid/:_id",
   getPostByIdController.handle.bind(getPostByIdController)
 );
@@ -41,6 +47,10 @@ router.get(
 router.post(
   "/api/posts/save",
   createPostController.handle.bind(createPostController)
+);
+router.post(
+  "/api/posts/tags/save",
+  createTagController.handle.bind(createTagController)
 );
 router.patch(
   "/api/posts/update/:_id",
