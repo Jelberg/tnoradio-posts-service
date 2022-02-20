@@ -151,7 +151,6 @@ export class PostMongoRepository implements PostRepository {
 
   async updatePostImage(image, slug, name): Promise<PostImage> {
     let createResponse;
-
     console.log(name);
     console.log(slug);
 
