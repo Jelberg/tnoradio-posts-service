@@ -1,18 +1,18 @@
-import UserModel from "../../domain/entities/User";
+import PostModel from "../../domain/entities/Post";
 import Command from "../command";
-import { UserRepository } from "../../domain/services/user.service.repository";
-import UserImage from "../../domain/entities/UserImage";
+import { PostRepository } from "../../domain/services/Post.service.repository";
+import PostImage from "../../domain/entities/PostImage";
 
 /**
  * Uploads image to database.
  */
 export class UpdateImageInDB extends Command {
-  private _repository: UserRepository;
-  private image: UserImage;
+  private _repository: PostRepository;
+  private image: PostImage;
   private slug: String;
   private name: String;
 
-  constructor(_repository: UserRepository) {
+  constructor(_repository: PostRepository) {
     super();
     this._repository = _repository;
   }

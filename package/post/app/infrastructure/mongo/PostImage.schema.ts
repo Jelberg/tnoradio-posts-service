@@ -28,7 +28,7 @@ const PostImageSchema = new Schema(
   }
 );
 
-//User constant represents the entire collection of data
+//Post constant represents the entire collection of data
 export default mongoose.model<IPostImage & mongoose.Document>(
   "postImage",
   PostImageSchema
