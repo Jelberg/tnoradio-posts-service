@@ -9,12 +9,12 @@ export class GetPostImageController {
   constructor(private useCase: UseCase) {}
 
   async handle(req: e.Request, res: e.Response) {
-    //console.log("SHOW IMAGE CONTROLLER");
+    console.log("SHOW IMAGE CONTROLLER");
     console.log(req.params);
 
     try {
       var options = {
-        root: "public/post_images/" + req.params.type,
+        root: "public/post_images/main/",
         dotfiles: "deny",
         headers: {
           "x-timestamp": Date.now(),

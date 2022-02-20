@@ -12,7 +12,7 @@ export class UploadImageToDBController {
   async handle(req, res) {
     console.log("ENTRÓ");
 
-    console.log(req.body);
+    console.log(req.file);
     try {
       var obj = {
         _id: null,
@@ -21,7 +21,7 @@ export class UploadImageToDBController {
         owner: req.body.owner,
         file: {
           data: fs.readFileSync(
-            path.join("public/post_images" + "/", req.file.filename)
+            path.join("public/post_images/main", req.file.filename)
           ),
           contentType: "image/jpeg",
         },

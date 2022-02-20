@@ -127,8 +127,11 @@ export class PostMongoRepository implements PostRepository {
     }
   }
   async getPostImage(name: String, slug: String): Promise<PostImage> {
+    console.log(name);
+    console.log(slug);
     try {
       const image = await Image.findOne({ imageName: name, imageUrl: slug });
+      console.log(image);
       if (image == null) return null;
       else return image;
     } catch (err) {

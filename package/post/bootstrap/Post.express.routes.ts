@@ -46,6 +46,7 @@ router.get(
 );
 router.post(
   "/api/posts/save",
+  upload.single("image"),
   createPostController.handle.bind(createPostController)
 );
 router.post(

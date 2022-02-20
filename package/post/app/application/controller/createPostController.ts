@@ -10,6 +10,7 @@ export class CreatePostController {
   async handle(req: e.Request, res: e.Response) {
     console.log("CONTROLLER");
     console.log(req.body);
+
     this.useCase.createPost.CreatePost(req.body);
 
     try {

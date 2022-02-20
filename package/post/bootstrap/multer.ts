@@ -3,13 +3,14 @@ import multer from "multer";
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/post_images/");
+    cb(null, "public/post_images/main");
   },
   filename: (req, file, cb) => {
-    console.log(file);
+    console.log("MULTER");
+    console.log(file.originalname);
     var filetype = "";
 
-    if (file.mimetype === "image/jpeg") {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg") {
       filetype = "jpg";
     }
     cb(null, file.originalname);
