@@ -47,6 +47,7 @@
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "global-tunnel-ng": "^2.7.1",
+    "googleapis": "^39.2.0",
     "joi": "^17.2.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",

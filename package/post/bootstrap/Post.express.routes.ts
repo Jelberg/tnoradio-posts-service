@@ -13,7 +13,7 @@ import {
   deletePostController,
   postsHealthController,
   postImageController,
-  uploadImagesController,
+  uploadImageController,
   getPostBySlugController,
   getImageFromDBController,
   uploadImageToDbController,
@@ -71,13 +71,13 @@ router.get(
 );
 router.post(
   "/api/posts/upload",
-  upload.single("upload"),
-  uploadImagesController.handle.bind(uploadImagesController)
+  upload.single("image"),
+  uploadImageController.handle.bind(uploadImageController)
 );
 router.post(
   "/api/posts/uploadtodb",
   upload.single("image"),
-  uploadImageToDbController.handle.bind(uploadImageToDbController)
+  uploadImageController.handle.bind(uploadImageController)
 );
 router.patch(
   "/api/posts/updateimageindb",

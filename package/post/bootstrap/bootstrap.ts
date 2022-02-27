@@ -36,8 +36,8 @@ import { GetPostsHealth } from "../app/application/useCases/PostsHealthGetter.uc
 import { PostImagesLocalRepository } from "../app/infrastructure/PostImages.local.repository";
 import { PostImageRepository } from "../app/domain/services/Post.images.repository";
 
-import { UploadImagesController } from "../app/application/controller/uploadImages.controller";
-import { UploadImages } from "../app/application/useCases/UploadImages.uc";
+import { UploadImageController } from "../app/application/controller/uploadImage.controller";
+import { UploadImage } from "../app/application/useCases/UploadImage.uc";
 
 import { GetPostBySlug } from "../app/application/useCases/PostBySlugGetter";
 import { GetPostBySlugController } from "../app/application/controller/getPostBySlugController";
@@ -48,6 +48,7 @@ import { UploadImageToDBController } from "../app/application/controller/uploadI
 import { ImageDBGetter } from "../app/application/useCases/ImageDBGetter.uc";
 import { UploadImageToDatabase } from "../app/application/useCases/UploadImageToBD.uc";
 import { UpdateImageInDB } from "../app/application/useCases/UpdateImageInDB.uc";
+import { GoogleRepository } from "../app/infrastructure/google/PostImages.google.repository";
 
 // BOOTSTRAP SERVICES
 /**
@@ -55,10 +56,13 @@ import { UpdateImageInDB } from "../app/application/useCases/UpdateImageInDB.uc"
  * diferentes infraestructuras se va a utilizar.
  */
 const PostRepository: PostRepository = new PostMongoRepository();
+
 const PostImageRepository: PostImageRepository =
   new PostImagesLocalRepository();
 
-// BOOTSTRAP COMMANDS  (Post CASE)
+const PostGoogleRepository: PostImageRepository = new GoogleRepository();
+
+// BOOTSTRAP COMMANDS  (Use CASE)
 const getAllPosts = new ReadPost(PostRepository);
 const createPost = new PostCreator(PostRepository);
 const getAllTags = new TagListGetter(PostRepository);
@@ -70,7 +74,7 @@ const destroyPost = new DestroyPost(PostRepository);
 const deletePost = new DeletePost(PostRepository);
 const getPostsHealth = new GetPostsHealth();
 const getPostImage = new ImageGetter(PostImageRepository);
-const uploadImages = new UploadImages();
+const uploadImage = new UploadImage(PostGoogleRepository);
 const uploadImageToDb = new UploadImageToDatabase(PostRepository);
 const imageFromDbGetter = new ImageDBGetter(PostRepository);
 const updateImageInDB = new UpdateImageInDB(PostRepository);
@@ -87,7 +91,7 @@ const destroyPostController = new DestroyPostController({ destroyPost });
 const deletePostController = new DeletePostController({ deletePost });
 const postsHealthController = new HealthController({ getPostsHealth });
 const postImageController = new GetPostImageController({ getPostImage });
-const uploadImagesController = new UploadImagesController({ uploadImages });
+const uploadImageController = new UploadImageController({ uploadImage });
 const uploadImageToDbController = new UploadImageToDBController({
   uploadImageToDb,
 });
@@ -109,7 +113,7 @@ export {
   deletePostController,
   postsHealthController,
   postImageController,
-  uploadImagesController,
+  uploadImageController,
   getPostBySlugController,
   uploadImageToDbController,
   getImageFromDBController,
