@@ -13,9 +13,7 @@ export class GoogleRepository implements PostImageRepository {
       if (err) throw err;
       const files = res.data.files;
       if (files.length) {
-        files.map((file) => {
-          console.log(file);
-        });
+        files.map((file) => {});
       } else {
         console.log("No files found");
       }
@@ -64,19 +62,16 @@ export class GoogleRepository implements PostImageRepository {
         requestBody: {
           name: name, //file name
           mimeType: mimeType,
-          parents: ["1VK79UjtWInrW9Izk1KbcGh0DYuBUKbmA"],
+          parents: ["1qeJZuLFFo_oSL0Qo7A__byzVKjiPvcsK"],
         },
         media: {
           mimeType: mimeType,
           body: fs.createReadStream(filePath),
         },
       });
-      // report the response from the request
-      console.log("RES");
-      console.log(response.data);
       this.generatePublicUrl(response.data.id);
-      this.listDriveFiles();
-      return response.data;
+      const imageUrl = `https://drive.google.com/uc?id=${response.data.id}`;
+      return imageUrl;
     } catch (error) {
       //report the error message
       console.log(error.message);

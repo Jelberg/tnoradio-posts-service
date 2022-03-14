@@ -23,7 +23,6 @@ var check = {
 };
 
 var register = consul.agent.service.register(check, function (err) {
-  console.log(SERVICE_ID);
   if (err) throw err;
 });
 

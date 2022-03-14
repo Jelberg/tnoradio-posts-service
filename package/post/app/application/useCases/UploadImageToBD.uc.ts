@@ -25,7 +25,6 @@ export class UploadImageToDatabase extends Command {
 
   //  Override Method
   public async execute() {
-    console.log("USECASE");
     const response = await this._repository.savePostImage(this.image);
     return response;
   }

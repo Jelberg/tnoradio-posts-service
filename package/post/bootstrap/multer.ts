@@ -6,8 +6,6 @@ var storage = multer.diskStorage({
     cb(null, "public/post_images/main");
   },
   filename: (req, file, cb) => {
-    console.log("MULTER");
-    console.log(file.originalname);
     var filetype = "";
 
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg") {

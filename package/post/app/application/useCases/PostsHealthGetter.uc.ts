@@ -9,7 +9,6 @@ export class GetPostsHealth extends Command {
   //  Override Method
   public async execute() {
     const response = `🛡️  Posts is ok on port: ${config.port} 🛡️`;
-    console.log(response);
     return response;
   }
 }

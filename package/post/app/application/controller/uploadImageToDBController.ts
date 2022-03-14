@@ -10,9 +10,6 @@ export class UploadImageToDBController {
   constructor(private useCase: UseCase) {}
 
   async handle(req, res) {
-    console.log("ENTRÓ");
-
-    console.log(req.file);
     try {
       var obj = {
         _id: null,
@@ -26,8 +23,6 @@ export class UploadImageToDBController {
           contentType: "image/jpeg",
         },
       };
-      console.log("ALSHDHD");
-      console.log(obj);
 
       this.useCase.uploadImageToDb.SetImage(obj);
     } catch (error) {
@@ -37,7 +32,6 @@ export class UploadImageToDBController {
 
     try {
       const image = await this.useCase.uploadImageToDb.execute();
-      //console.log(user);
       return res.status(201).send(image);
     } catch (error) {
       console.log(error);

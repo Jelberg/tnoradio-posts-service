@@ -11,10 +11,6 @@ export class UpdateImageInDBController {
   constructor(private useCase: UseCase) {}
 
   async handle(req, res) {
-    console.log("ENTRÓ a CONTROLLER");
-    console.log(req.body.slug);
-    console.log(req.body.type);
-    console.log(req.body.owner);
     var obj = {
       imageName: req.body.type,
       imageUrl: req.body.slug,
@@ -27,15 +23,12 @@ export class UpdateImageInDBController {
       },
     };
 
-    console.log(obj);
-
     this.useCase.updateImageInDB.SetImage(obj);
     this.useCase.updateImageInDB.SetName(req.body.type);
     this.useCase.updateImageInDB.SetSlug(req.body.slug);
 
     try {
       const image = await this.useCase.updateImageInDB.execute();
-      console.log("CONTROLLER" + image);
       return res.status(200).send(image);
     } catch (error) {
       console.log(error);

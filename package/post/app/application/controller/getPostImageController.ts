@@ -9,9 +9,6 @@ export class GetPostImageController {
   constructor(private useCase: UseCase) {}
 
   async handle(req: e.Request, res: e.Response) {
-    console.log("SHOW IMAGE CONTROLLER");
-    console.log(req.params);
-
     try {
       var options = {
         root: "public/post_images/main/",
@@ -27,7 +24,6 @@ export class GetPostImageController {
       this.useCase.getPostImage.setResponse(res);
 
       const response = this.useCase.getPostImage.execute();
-
       return response;
     } catch (error) {
       console.log(error);

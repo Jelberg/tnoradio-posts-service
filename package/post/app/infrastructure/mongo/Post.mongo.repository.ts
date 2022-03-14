@@ -9,8 +9,6 @@ import Image from "./PostImage.schema";
 
 export class PostMongoRepository implements PostRepository {
   async update(post: DomainPost, id: string): Promise<Error | DomainPost> {
-    console.log("MONGO", post);
-    console.log("ID", id);
     try {
       const result = await Post.findByIdAndUpdate(
         { _id: id },
@@ -21,16 +19,6 @@ export class PostMongoRepository implements PostRepository {
           return err;
         }
       );
-
-      console.log("Post_UPDATED", result);
-
-      //get current information from the Post's database
-      // let PostUpdated = await this.getPostByEmail(Post.email);
-
-      //insert table Post history
-      // const PostHistory = await this.insertFromHistoryPost(Post);
-
-      //console.log("Post_HSTORE", PostHistory);
       return post;
     } catch (err) {
       let errorObject = JSON.parse(JSON.stringify(err));
@@ -58,11 +46,8 @@ export class PostMongoRepository implements PostRepository {
   }
 
   async save(post: DomainPost): Promise<DomainPost> {
-    console.log("create");
-    console.log(post);
     try {
       const response = await Post.create(post);
-      console.log(response);
       return response;
     } catch (err) {
       console.log(err);
@@ -70,11 +55,8 @@ export class PostMongoRepository implements PostRepository {
     }
   }
   async saveTag(tag: DomainTag): Promise<DomainTag> {
-    console.log("create");
-    console.log(tag);
     try {
       const response = await Tag.create(tag);
-      console.log(response);
       return response;
     } catch (err) {
       console.log(err);
@@ -120,18 +102,14 @@ export class PostMongoRepository implements PostRepository {
 
   async destroy(postId: String): Promise<any | Error> {
     try {
-      //console.log(PostId);
       return await Post.findByIdAndRemove({ _id: postId });
     } catch (err) {
       return err;
     }
   }
   async getPostImage(name: String, slug: String): Promise<PostImage> {
-    console.log(name);
-    console.log(slug);
     try {
       const image = await Image.findOne({ imageName: name, imageUrl: slug });
-      console.log(image);
       if (image == null) return null;
       else return image;
     } catch (err) {
@@ -151,9 +129,6 @@ export class PostMongoRepository implements PostRepository {
 
   async updatePostImage(image, slug, name): Promise<PostImage> {
     let createResponse;
-    console.log(name);
-    console.log(slug);
-
     const updateResponse = await Image.findOneAndUpdate(
       { imageName: name, imageUrl: slug },
       image

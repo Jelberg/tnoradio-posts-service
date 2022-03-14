@@ -13,9 +13,8 @@ export class DestroyPost extends Command {
     this._repository = _repository;
   }
 
-  public setPostId(PostId) {
-    //console.log(PostId);
-    this._PostId = PostId;
+  public setPostId(postId) {
+    this._PostId = postId;
   }
 
   public getPostId() {
