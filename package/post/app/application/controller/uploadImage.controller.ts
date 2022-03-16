@@ -16,7 +16,7 @@ let post: DomainPost;
 export class UploadImageController {
   constructor(private useCase: UseCase) {}
 
-  async handle(req: e.Request, res: e.Response) {
+  async handle(req: any, res: e.Response) {
     console.log(this.useCase);
     try {
       this.useCase.updatePost.setId(req.body.owner);
@@ -31,8 +31,15 @@ export class UploadImageController {
       post = await this.useCase.getPost.execute();
       post.image = imageUrl;
       this.useCase.updatePost.setDomainPost(post);
-      const res = await this.useCase.updatePost.execute();
-      console.log(res);
+      const response = await this.useCase.updatePost.execute();
+      //console.log(res);
+      fs.unlink("public/post_images/main/" + req.file.filename, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+      return res.status(200).send(response);
     } catch (error) {
       console.log(error);
       return res.status(400).send(error);

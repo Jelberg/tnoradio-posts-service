@@ -1,27 +1,33 @@
 //inside create_test.js
-import assert from 'assert';
-import User from '../repository/mongo/Schemas/User.js'; //imports the User schema.
-import app from '../app.js';
-import '../repository/mongo/MongoDatabase.js';
-import sinon from 'sinon';
-import '../sinon-mongoose.js';
-import chai from 'chai';
-import chaiHttp from 'chai-http';
+import assert from "assert";
+import User from "../repository/mongo/Schemas/User.js"; //imports the User schema.
+import app from "../app.js";
+import "../repository/mongo/MongoDatabase.js";
+import sinon from "sinon";
+import "../sinon-mongoose.js";
+import chai from "chai";
+import chaiHttp from "chai-http";
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-var url = "http://localhost:4000";
+var url = "http://localhost:9000";
 
-describe('User Insertion', () => {
-    
-    const userMock = sinon.mock(new User({name:'Karolyn', lastName:'Méndez',    
-    email: 'karolscript@gmail.com', dni:17577898, isActive: true}));
-   var user = userMock.object;
-    beforeEach(function () {
-      //  console.log(user);
-    });
+describe("User Insertion", () => {
+  const userMock = sinon.mock(
+    new User({
+      name: "Karolyn",
+      lastName: "Méndez",
+      email: "karolscript@gmail.com",
+      dni: 17577898,
+      isActive: true,
+    })
+  );
+  var user = userMock.object;
+  beforeEach(function () {
+    //  console.log(user);
+  });
 
- /*   it('Sould mock user insertion', function(done) { // <= Pass in done callback
+  /*   it('Sould mock user insertion', function(done) { // <= Pass in done callback
         chai.request(app)
         .post('/api/users/save')
         .send(user)
@@ -35,7 +41,7 @@ describe('User Insertion', () => {
        
     });*/
 
-    afterEach(function (){
-     //   User.deleteOne(user);
-    });
+  afterEach(function () {
+    //   User.deleteOne(user);
+  });
 });

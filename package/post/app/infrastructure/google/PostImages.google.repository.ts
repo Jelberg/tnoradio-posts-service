@@ -36,7 +36,7 @@ export class GoogleRepository implements PostImageRepository {
         fileId: fileId,
         fields: "webViewLink, webContentLink",
       });
-      console.log(result.data);
+      //console.log(result.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -48,7 +48,7 @@ export class GoogleRepository implements PostImageRepository {
       const response = await drive.files.delete({
         fileId: fileId, // file id
       });
-      console.log(response.data, response.status);
+      //console.log(response.data, response.status);
     } catch (error) {
       console.log(error.message);
     }
@@ -56,7 +56,7 @@ export class GoogleRepository implements PostImageRepository {
 
   //function to upload the file
   async uploadFile(name, mimeType, filePath) {
-    console.log("UPLOAD A DRVE");
+    //console.log("UPLOAD A DRVE");
     try {
       const response = await drive.files.create({
         requestBody: {

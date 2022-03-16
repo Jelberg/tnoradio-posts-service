@@ -78,6 +78,7 @@ const uploadImage = new UploadImage(PostGoogleRepository);
 const uploadImageToDb = new UploadImageToDatabase(PostRepository);
 const imageFromDbGetter = new ImageDBGetter(PostRepository);
 const updateImageInDB = new UpdateImageInDB(PostRepository);
+const getPost = new GetPostById(PostRepository);
 
 // BOOTSTRAP CONTROLLERS
 const getAllPostsController = new GetAllPostsController({ getAllPosts });
@@ -91,7 +92,11 @@ const destroyPostController = new DestroyPostController({ destroyPost });
 const deletePostController = new DeletePostController({ deletePost });
 const postsHealthController = new HealthController({ getPostsHealth });
 const postImageController = new GetPostImageController({ getPostImage });
-const uploadImageController = new UploadImageController({ uploadImage });
+const uploadImageController = new UploadImageController({
+  uploadImage,
+  updatePost,
+  getPost,
+});
 const uploadImageToDbController = new UploadImageToDBController({
   uploadImageToDb,
 });
