@@ -56,7 +56,6 @@ export class GoogleRepository implements PostImageRepository {
 
   //function to upload the file
   async uploadFile(name, mimeType, filePath) {
-    //console.log("UPLOAD A DRVE");
     try {
       const response = await drive.files.create({
         requestBody: {
