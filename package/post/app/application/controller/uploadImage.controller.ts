@@ -17,7 +17,7 @@ export class UploadImageController {
   constructor(private useCase: UseCase) {}
 
   async handle(req: any, res: e.Response) {
-    console.log(this.useCase);
+    //console.log(this.useCase);
     try {
       this.useCase.updatePost.setId(req.body.owner);
       this.useCase.getPost.createPostId(req.body.owner);
