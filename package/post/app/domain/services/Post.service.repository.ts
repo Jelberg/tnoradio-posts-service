@@ -8,6 +8,7 @@ export interface PostRepository {
   getPostById(_id: String): Promise<DomainPost>;
   getPostBySlug(_slug: String): Promise<DomainPost>;
   getAll(): Promise<DomainPost[] | Error>;
+  getPostsPage(pageSize: number, page: number): Promise<DomainPost[] | Error>;
   getAllTags(): Promise<DomainTag[] | Error>;
   update(Post: DomainPost, id?: String): Promise<DomainPost | Error>;
   destroy(PostId: String): Promise<any | Error>;

@@ -72,6 +72,19 @@ export class PostMongoRepository implements PostRepository {
     }
   }
 
+  async getPostsPage(
+    pageSize: number,
+    page: number
+  ): Promise<Error | DomainPost[]> {
+    try {
+      return Post.find()
+        .limit(pageSize)
+        .skip(pageSize * page);
+    } catch (err) {
+      return err;
+    }
+  }
+
   async getAllTags(): Promise<Error | DomainTag[]> {
     try {
       return Tag.find();

@@ -20,6 +20,7 @@ import {
   updateImageInDBController,
   getAllTagsController,
   createTagController,
+  getPostsPageController,
 } from "./bootstrap";
 
 var router = express.Router();
@@ -31,6 +32,10 @@ router.get(
 router.get(
   "/api/posts/index",
   getAllPostsController.handle.bind(getAllPostsController)
+);
+router.get(
+  "/api/posts/index/:pagesize/:page",
+  getPostsPageController.handle.bind(getPostsPageController)
 );
 router.get(
   "/api/posts/tags/index",

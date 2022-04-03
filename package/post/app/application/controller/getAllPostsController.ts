@@ -13,9 +13,9 @@ export class GetAllPostsController {
     this.useCase.getAllPosts.setTypeReading("all");
 
     try {
-      const users = await this.useCase.getAllPosts.execute();
+      const posts = await this.useCase.getAllPosts.execute();
 
-      return res.status(200).send(users);
+      return res.status(200).send(posts);
     } catch (err) {
       console.error(err);
       return res.status(400).send(err);
