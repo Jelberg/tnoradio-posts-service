@@ -78,6 +78,7 @@ export class PostMongoRepository implements PostRepository {
   ): Promise<Error | DomainPost[]> {
     try {
       return Post.find()
+        .sort({ createdAt: -1 })
         .limit(pageSize)
         .skip(pageSize * page);
     } catch (err) {
