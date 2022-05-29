@@ -43,11 +43,11 @@ import { GetPostBySlug } from "../app/application/useCases/PostBySlugGetter";
 import { GetPostBySlugController } from "../app/application/controller/getPostBySlugController";
 
 import { GetImageFromDBController } from "../app/application/controller/getImageFromDBController";
-import { UpdateImageInDBController } from "../app/application/controller/updateImageInDBController";
+import { UpdateImageController } from "../app/application/controller/updateImageController";
 import { UploadImageToDBController } from "../app/application/controller/uploadImageToDBController";
 import { ImageDBGetter } from "../app/application/useCases/ImageDBGetter.uc";
 import { UploadImageToDatabase } from "../app/application/useCases/UploadImageToBD.uc";
-import { UpdateImageInDB } from "../app/application/useCases/UpdateImageInDB.uc";
+import { UpdateImage } from "../app/application/useCases/UpdateImage.uc";
 import { GoogleRepository } from "../app/infrastructure/google/PostImages.google.repository";
 import { ReadPostPage } from "../app/application/useCases/PostPageReader";
 import { GetPostsPageController } from "../app/application/controller/getPagePostsController";
@@ -80,7 +80,7 @@ const getPostImage = new ImageGetter(PostImageRepository);
 const uploadImage = new UploadImage(PostGoogleRepository);
 const uploadImageToDb = new UploadImageToDatabase(PostRepository);
 const imageFromDbGetter = new ImageDBGetter(PostRepository);
-const updateImageInDB = new UpdateImageInDB(PostRepository);
+const updateImage = new UpdateImage(PostGoogleRepository);
 const getPost = new GetPostById(PostRepository);
 
 // BOOTSTRAP CONTROLLERS
@@ -107,8 +107,10 @@ const uploadImageToDbController = new UploadImageToDBController({
 const getImageFromDBController = new GetImageFromDBController({
   imageFromDbGetter,
 });
-const updateImageInDBController = new UpdateImageInDBController({
-  updateImageInDB,
+const updateImageController = new UpdateImageController({
+  updateImage,
+  updatePost,
+  getPost,
 });
 
 export {
@@ -126,6 +128,6 @@ export {
   getPostBySlugController,
   uploadImageToDbController,
   getImageFromDBController,
-  updateImageInDBController,
+  updateImageController,
   getPostsPageController,
 };

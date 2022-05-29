@@ -1,32 +1,46 @@
-import e from "express";
 import DomainPost from "../../domain/entities/Post";
 import { GetPostById } from "../useCases/PostByIdGetter";
 import { UpdatePost } from "../useCases/PostUpdater";
-import { UploadImage } from "../useCases/UploadImage.uc";
+import { UpdateImage } from "../useCases/UpdateImage.uc";
 var fs = require("fs");
 var path = require("path");
 
 interface UseCase {
-  uploadImage: UploadImage;
+  updateImage: UpdateImage;
   updatePost: UpdatePost;
   getPost: GetPostById;
 }
 let post: DomainPost;
 
-export class UploadImageController {
+export class UpdateImageController {
   constructor(private useCase: UseCase) {}
 
-  async handle(req: any, res: e.Response) {
+  async handle(req, res) {
     try {
+      var obj = {
+        imageName: req.body.type,
+        imageUrl: req.body.slug,
+        owner: req.body.owner,
+        fileId: req.body.fileId,
+        file: {
+          data: fs.readFileSync(
+            path.join("public/post_images/main/", req.file.filename)
+          ),
+          contentType: "image/jpeg",
+        },
+      };
+
       this.useCase.updatePost.setId(req.body.owner);
       this.useCase.getPost.createPostId(req.body.owner);
-      this.useCase.uploadImage.setMimeType("image/jpeg");
-      this.useCase.uploadImage.setName(req.file.filename);
-      this.useCase.uploadImage.setPath(
+      this.useCase.updateImage.setMimeType("image/jpeg");
+      this.useCase.updateImage.setName(req.file.filename);
+      this.useCase.updateImage.setFileId(req.body.fileId);
+      this.useCase.updateImage.setPath(
         "public/post_images/main/" + req.file.filename
       );
 
-      const imageUrl = await this.useCase.uploadImage.execute();
+      const imageUrl = await this.useCase.updateImage.execute();
+
       post = await this.useCase.getPost.execute();
       post.image = imageUrl;
       this.useCase.updatePost.setDomainPost(post);

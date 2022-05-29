@@ -1,6 +1,9 @@
 import { PostImageRepository } from "../domain/services/Post.images.repository";
 
 export class PostImagesLocalRepository implements PostImageRepository {
+  updateFile(name: any, mimeType: any, filePath: any, fileId: any) {
+    throw new Error("Method not implemented.");
+  }
   listDriveFiles() {
     throw new Error("Method not implemented.");
   }

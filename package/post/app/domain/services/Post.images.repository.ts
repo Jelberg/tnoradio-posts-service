@@ -4,4 +4,5 @@ export interface PostImageRepository {
   generatePublicUrl(fileId);
   deleteFile(fileId);
   uploadFile(name, mimeType, filePath);
+  updateFile(name, mimeType, filePath, fileId);
 }

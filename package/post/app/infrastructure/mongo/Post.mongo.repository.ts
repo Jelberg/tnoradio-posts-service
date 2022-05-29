@@ -10,15 +10,9 @@ import Image from "./PostImage.schema";
 export class PostMongoRepository implements PostRepository {
   async update(post: DomainPost, id: string): Promise<Error | DomainPost> {
     try {
-      const result = await Post.findByIdAndUpdate(
-        { _id: id },
-        post,
-        { runValidators: true },
-        function (err) {
-          console.log("ERR IN UPDATE ", err);
-          return err;
-        }
-      );
+      const result = await Post.findByIdAndUpdate({ _id: id }, post, {
+        runValidators: true,
+      });
       return post;
     } catch (err) {
       let errorObject = JSON.parse(JSON.stringify(err));
@@ -66,7 +60,7 @@ export class PostMongoRepository implements PostRepository {
 
   async getAll(): Promise<Error | DomainPost[]> {
     try {
-      return Post.find();
+      return Post.find().sort({ createdAt: -1 });
     } catch (err) {
       return err;
     }

@@ -17,7 +17,7 @@ import {
   getPostBySlugController,
   getImageFromDBController,
   uploadImageToDbController,
-  updateImageInDBController,
+  updateImageController,
   getAllTagsController,
   createTagController,
   getPostsPageController,
@@ -85,9 +85,9 @@ router.post(
   uploadImageController.handle.bind(uploadImageController)
 );
 router.patch(
-  "/api/posts/updateimageindb",
+  "/api/posts/updateimage",
   upload.single("image"),
-  updateImageInDBController.handle.bind(updateImageInDBController)
+  updateImageController.handle.bind(updateImageController)
 );
 router.get(
   "/api/posts/imagefromdb/:name/:slug",
