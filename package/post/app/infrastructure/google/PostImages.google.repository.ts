@@ -44,7 +44,6 @@ export class GoogleRepository implements PostImageRepository {
 
   //delete file function
   async deleteFile(fileId) {
-    console.log(fileId);
     try {
       const response = await drive.files.delete({
         fileId: fileId, // file id
