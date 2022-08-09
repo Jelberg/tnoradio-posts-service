@@ -5,14 +5,10 @@ import express from "express";
 import kafka from "./kafka";
 import config from "../config";
 import consul from "./consul";
-import { GetPostById } from "../app/application/useCases/PostByIdGetter";
-import { GetPostByIdController } from "../app/application/controller/getPostByIdController";
 import { PostMongoRepository } from "../app/infrastructure/mongo/Post.mongo.repository";
 import { PostRepository } from "../app/domain/services/Post.service.repository";
 
 const PostRepository: PostRepository = new PostMongoRepository();
-const getPostById = new GetPostById(PostRepository);
-const getPostByIdController = new GetPostByIdController({ getPostById });
 
 export const app = express();
 //Adds Express Static Middleware
