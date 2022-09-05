@@ -49,8 +49,12 @@ import { ImageDBGetter } from "../app/application/useCases/ImageDBGetter.uc";
 import { UploadImageToDatabase } from "../app/application/useCases/UploadImageToBD.uc";
 import { UpdateImage } from "../app/application/useCases/UpdateImage.uc";
 import { GoogleRepository } from "../app/infrastructure/google/PostImages.google.repository";
+
 import { ReadPostPage } from "../app/application/useCases/PostPageReader";
 import { GetPostsPageController } from "../app/application/controller/getPagePostsController";
+
+import { ReadPostPageByOwner } from "../app/application/useCases/PostPageByOwnerReader";
+import { GetPostsPageByOwnerController } from "../app/application/controller/getPagePostsByOwnerController";
 
 // BOOTSTRAP SERVICES
 /**
@@ -67,6 +71,7 @@ const PostGoogleRepository: PostImageRepository = new GoogleRepository();
 // BOOTSTRAP COMMANDS  (Use CASE)
 const getAllPosts = new ReadPost(PostRepository);
 const getPostsPage = new ReadPostPage(PostRepository);
+const getPostsPageByOwner = new ReadPostPageByOwner(PostRepository);
 const createPost = new PostCreator(PostRepository);
 const getAllTags = new TagListGetter(PostRepository);
 const createTag = new TagCreator(PostRepository);
@@ -86,6 +91,9 @@ const getPost = new GetPostById(PostRepository);
 // BOOTSTRAP CONTROLLERS
 const getAllPostsController = new GetAllPostsController({ getAllPosts });
 const getPostsPageController = new GetPostsPageController({ getPostsPage });
+const getPostsPageByOwnerController = new GetPostsPageByOwnerController({
+  getPostsPageByOwner,
+});
 const createPostController = new CreatePostController({ createPost });
 const getAllTagsController = new GetAllTagsController({ getAllTags });
 const createTagController = new CreateTagController({ createTag });
@@ -130,4 +138,5 @@ export {
   getImageFromDBController,
   updateImageController,
   getPostsPageController,
+  getPostsPageByOwnerController,
 };

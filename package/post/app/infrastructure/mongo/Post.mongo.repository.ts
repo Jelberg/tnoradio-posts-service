@@ -80,6 +80,21 @@ export class PostMongoRepository implements PostRepository {
     }
   }
 
+  async getPostsByOwner(
+    pageSize: number,
+    page: number,
+    owner: String
+  ): Promise<Error | DomainPost[]> {
+    try {
+      return Post.find({ owner_id: owner })
+        .sort({ createdAt: -1 })
+        .limit(pageSize)
+        .skip(pageSize * page);
+    } catch (err) {
+      return err;
+    }
+  }
+
   async getAllTags(): Promise<Error | DomainTag[]> {
     try {
       return Tag.find();

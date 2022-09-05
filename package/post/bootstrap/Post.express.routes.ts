@@ -21,6 +21,7 @@ import {
   getAllTagsController,
   createTagController,
   getPostsPageController,
+  getPostsPageByOwnerController,
 } from "./bootstrap";
 
 var router = express.Router();
@@ -36,6 +37,10 @@ router.get(
 router.get(
   "/api/posts/index/:pagesize/:page",
   getPostsPageController.handle.bind(getPostsPageController)
+);
+router.get(
+  "/api/posts/index/:pagesize/:page/:owner",
+  getPostsPageByOwnerController.handle.bind(getPostsPageByOwnerController)
 );
 router.get(
   "/api/posts/tags/index",
